@@ -1,0 +1,7 @@
+ru:
+  rspec_api_docs:
+    parameter: Параметр
+    required: Обязательный
+    description: Описание
+    required_yes: Да
+    required_no: Нет
