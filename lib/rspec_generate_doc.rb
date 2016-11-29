@@ -5,6 +5,8 @@ require 'rspec_generate_doc/library_hooks/doc'
 require 'rspec_generate_doc/generate'
 
 module RspecGenerateDoc
+  extend self
+
   I18n.load_path.concat Dir[File.expand_path('../../config/locales/*.yml', __FILE__)]
 
   ::RSpec.configure do |config|
