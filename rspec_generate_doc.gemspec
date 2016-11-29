@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["djok69@gmail.com"]
 
   spec.summary       = %q{Generate documentation api of rspec tests}
-  spec.homepage      = 'https://github.com/jokius/rspec_api_docs'
+  spec.homepage      = 'https://github.com/jokius/rspec_generate_doc'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
