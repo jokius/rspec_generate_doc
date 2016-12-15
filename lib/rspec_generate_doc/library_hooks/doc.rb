@@ -18,7 +18,8 @@ module RspecGenerateDoc
             parent = parent.parent
           end
 
-          @hash[key] ||= { response: response, params: (try(:params) || @params || {}) }
+          skip = try(:skip_this) || @skip_this
+          @hash[key] ||= { response: response, params: (try(:params) || @params || {}) } unless skip
         end
 
         config.after(:context) do

@@ -49,6 +49,17 @@ id | email - parameter in result
 description - description parameter. Default parent key name
 required - is parameter required? Default false
 
+*skip add to api description*
+
+``` ruby
+...
+
+context 'this case will be skipped' do
+  let(:skip_this) {true}
+  it(expect(true).to be true)
+end
+...
+```
 **result**
 
 After tests completed file *_user_controller.md* will be created in docs folder.  In format to Slate
