@@ -61,12 +61,18 @@ module RspecGenerateDoc
       file_text
     end
 
-    def params_to_text(request, params)
+    def params_to_text(_request, api_params)
       file_text = ''
-      request.params.except(*%i(controller action format)).each do |name, _|
-        hash = params[name.to_sym] || {}
+
+      api_params.keys.each do |name|
+        hash = api_params[name.to_sym] || {}
         hash = {} unless hash.is_a? Hash
-        required = hash[:required] ? I18n.t(:required_yes, scope: :rspec_api_docs) : I18n.t(:required_no, scope: :rspec_api_docs)
+        required = if hash[:required]
+                     I18n.t(:required_yes, scope: :rspec_api_docs)
+                   else
+                     I18n.t(:required_no, scope: :rspec_api_docs)
+                   end
+
         description = hash[:description] || name
         file_text += "#{name} | #{required} | #{description}\r\n"
       end
