@@ -19,7 +19,7 @@ module RspecGenerateDoc
           end
 
           skip = try(:skip_this) || @skip_this
-          @hash[key] ||= { response: response, params: (try(:params) || @params || {}) } unless skip
+          @hash[key] ||= { response: response, api_params: (try(:api_params) || @api_params || {}) } unless skip
         end
 
         config.after(:context) do

@@ -54,7 +54,7 @@ module RspecGenerateDoc
         file_text += "```\r\n\r\n"\
                   "#{I18n.t(:parameter, scope: :rspec_api_docs)} | #{I18n.t(:required, scope: :rspec_api_docs)} | #{I18n.t(:description, scope: :rspec_api_docs)}\r\n"\
                   "-------- | ------- | -------\r\n"
-        file_text += params_to_text(request, method[:params])
+        file_text += params_to_text(request, method[:api_params])
         file_text += "\r\n\r\n"
       end
 

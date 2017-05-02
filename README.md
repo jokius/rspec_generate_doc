@@ -36,7 +36,7 @@ Example use
 ``` ruby
 # spec/controllers/user_controller_spec.rb
 ...
-let(:params) do
+let(:api_params) do
   {
     id: { description: 'user id', required: true },
     email: { description: 'user email', required: false }
