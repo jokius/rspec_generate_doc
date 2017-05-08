@@ -6,10 +6,12 @@ module RspecGenerateDoc
     module Doc
       ::RSpec.configure do |config|
         config.before(:context) do
-          @hash = {}
+          @methods_hash = {}
+          @is_correct_type = self.class.metadata[:type] == :controller
         end
 
         config.after(:each) do
+          next unless @is_correct_type
           key = self.class.description
           parent = self.class.parent
           loop do
