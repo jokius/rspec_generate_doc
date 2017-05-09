@@ -28,6 +28,11 @@ require 'rspec_generate_doc'
 RspecGenerateDoc.configure do |config|
   config.docs_dir = 'path/to/docs/dir' # default: "#{Rails.root}/docs"
   config.locale = :ru # default: I18n.default_locale
+  config.action_decorator = My::Cool::ActionDecorator # default: RspecGenerateDoc::Decorators::Action
+  config.parameter_decorator = My::Cool::ParameterDecorator # default: RspecGenerateDoc::Decorators::Parameter
+  config.template_file = '/path/to/my/template.api.erb' # default:  "#{File.dirname(__FILE__)}/templates/slate.md.erb"
+  config.file_prefix = 'prefix_to_file_name_' # default:  '_'
+  config.file_suffix = '_suffix_to_file_name' # default:  ''
 end
 ```
 
