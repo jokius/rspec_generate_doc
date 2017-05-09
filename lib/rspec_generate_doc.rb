@@ -1,8 +1,6 @@
 require 'rspec/rails'
-require 'rspec_generate_doc/version'
 require 'rspec_generate_doc/configuration'
 require 'rspec_generate_doc/library_hooks/doc'
-require 'rspec_generate_doc/generate'
 
 module RspecGenerateDoc
   extend self
