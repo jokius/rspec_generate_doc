@@ -5,14 +5,16 @@ require 'rspec_generate_doc/decorators/action'
 module RspecGenerateDoc
   module LibraryHooks
     module Doc
+      CORRECT_TYPE = :controller
+
       ::RSpec.configure do |config|
         config.before(:context) do
           @actions = []
-          @is_correct_type = self.class.metadata[:type] == :controller
+          @is_correct_type = self.class.metadata[:type] != CORRECT_TYPE
         end
 
         config.after(:each) do
-          next unless @is_correct_type
+          next if @is_incorrect_type || try(:skip_this) || @skip_this
           name = self.class.description
           parent = self.class.parent
           loop do
@@ -21,7 +23,6 @@ module RspecGenerateDoc
             parent = parent.parent
           end
 
-          next if try(:skip_this) || @skip_this
           api_params = try(:api_params) || @api_params || {}
           opntions = try(:api_opntions) || @api_opntions || {}
           new_action = RspecGenerateDoc.configuration.action_decorator
