@@ -24,8 +24,9 @@ module RspecGenerateDoc
           next if try(:skip_this) || @skip_this
           api_params = try(:api_params) || @api_params || {}
           opntions = try(:api_opntions) || @api_opntions || {}
-          @actions << RspecGenerateDoc.configuration.action_decorator
+          new_action = RspecGenerateDoc.configuration.action_decorator
                                       .new(name: name, response: response, api_params: api_params, options: opntions)
+          @actions << new_action unless @actions.index { |action| action.name == new_action.name }
         end
 
         config.after(:context) do
