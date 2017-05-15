@@ -10,7 +10,7 @@ module RspecGenerateDoc
       ::RSpec.configure do |config|
         config.before(:context) do
           @actions = []
-          @is_correct_type = self.class.metadata[:type] != CORRECT_TYPE
+          @is_incorrect_type = self.class.metadata[:type] != CORRECT_TYPE
         end
 
         config.after(:each) do
@@ -31,7 +31,7 @@ module RspecGenerateDoc
         end
 
         config.after(:context) do
-          next unless @is_correct_type
+          next if @is_incorrect_type
           parent = self.class.top_level_description
           RspecGenerateDoc::GenarateFIle.new(parent: parent, actions: @actions).create_file_by_template
         end
