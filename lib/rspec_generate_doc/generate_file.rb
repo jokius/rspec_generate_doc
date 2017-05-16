@@ -19,7 +19,7 @@ module RspecGenerateDoc
 
     def create_file_by_template
       file = File.open(file_path, 'w+')
-      file.write ERB.new(File.binread(configuration.template_file), nil, '-').result(binding).try(:force_encoding,'utf-8')
+      file.write ERB.new(File.binread(configuration.template_file), nil, '-').result(binding).to_s.force_encoding('utf-8')
       file.close
     end
 
