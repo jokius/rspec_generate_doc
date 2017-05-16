@@ -43,16 +43,17 @@ Example use
 ...
 let(:api_params) do
   {
-    id: { description: 'user id', required: true },
-    email: { description: 'user email', required: false }
+    id: { name: 'alternative id name', description: 'user id', required: true },
+    email: { description: 'user email', required: 'if not id' }
   }
 end
 ...
 ```
 *keys description:*
-id | email - parameter in result
-description - description parameter. Default parent key name
-required - is parameter required? Default false
+id | email - Parameter name.
+name - Parameter name. Default parameter key name.
+description - description parameter. Default parameter key name.
+required - is parameter required? If the value type is boolean it will be translated to default language. If the value type is string then return it value.
 
 *skip add to api description*
 
@@ -63,6 +64,14 @@ context 'this case will be skipped' do
   let(:skip_this) {true}
   it(expect(true).to be true)
 end
+...
+```
+
+*alternative name to file and menu*
+``` ruby
+require 'rails_helper'
+
+RSpec.describe UserController, type: :controller, api_name: 'alternative_name' do
 ...
 ```
 **result**
