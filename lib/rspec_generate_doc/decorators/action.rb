@@ -8,7 +8,7 @@ module RspecGenerateDoc
         @name = (data[:name] || '').split('#').join(' ')
         @response = data[:response]
         @params = to_params(data[:api_params])
-        @options = OpenStruct.new(data[:opntions] || {})
+        @options = OpenStruct.new(data[:options] || {})
       end
 
       def request_method
