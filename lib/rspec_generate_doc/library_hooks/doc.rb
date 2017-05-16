@@ -32,7 +32,7 @@ module RspecGenerateDoc
 
         config.after(:context) do
           next if @is_incorrect_type
-          parent = try(:parent_name) || @parent_name || self.class.top_level_description
+          parent = self.class.metadata[:api_name].to_s || self.class.top_level_description
           RspecGenerateDoc::GenarateFIle.new(parent: parent, actions: @actions).create_file_by_template
         end
       end
