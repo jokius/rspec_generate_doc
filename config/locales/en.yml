@@ -3,5 +3,5 @@ en:
     parameter: Parameter
     required: Required
     description: Description
-    required_yes: Yes
-    required_no: No
+    required_yes: 'Yes'
+    required_no: 'No'
