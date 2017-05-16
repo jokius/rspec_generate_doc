@@ -19,7 +19,8 @@ module RspecGenerateDoc
 
     def create_file_by_template
       file = File.open(file_path, 'w+')
-      file.write ERB.new(File.binread(configuration.template_file), nil, '-').result(binding).to_s.force_encoding('utf-8')
+      file.write ERB.new(File.binread(configuration.template_file), nil, '-').result(binding).to_s
+                    .force_encoding('utf-8')
       file.close
     end
 
@@ -30,7 +31,7 @@ module RspecGenerateDoc
     end
 
     def parent_name
-      @parent_name ||= parent.downcase.split('::').join('_')
+      @parent_name ||= parent.split('::').join('_').underscore
     end
 
     def template_name
