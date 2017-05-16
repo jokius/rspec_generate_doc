@@ -7,7 +7,8 @@
 <%= action.request_method %> <%= action.request_fullpath %> HTTP/1.1
 Host: <%= action.host %>
 User-Agent: ExampleClient/1.0.0
-  ``
+```
+
 ```http
 HTTP/1.1 <%= action.status %> <%= action.status_message %>
 <% if action.content_type? -%>
@@ -15,8 +16,11 @@ Content-Type: <%= action.content_type %>
 <% end -%>
 <%= action.body %>
 ```
+
+<% if action.params.any? -%>
 <%= I18n.t(:parameter, scope: :rspec_api_docs) %> | <%= I18n.t(:required, scope: :rspec_api_docs) %> | <%= I18n.t(:description, scope: :rspec_api_docs) %>
 -------- | ------- | -------
+<% end -%>
 <% action.params.each do |parametr| -%>
 <%= parametr.name %> | <%= parametr.required_human %> | <%= parametr.description %>
 <% end -%>
