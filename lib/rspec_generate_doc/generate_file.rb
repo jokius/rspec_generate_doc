@@ -31,7 +31,7 @@ module RspecGenerateDoc
     end
 
     def parent_name
-      @parent_name ||= parent.split('::').join('_').underscore
+      @parent_name ||= parent.split(/::|\s/).join('_').underscore
     end
 
     def template_name
