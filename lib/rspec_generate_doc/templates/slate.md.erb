@@ -21,8 +21,8 @@ Content-Type: <%= action.content_type %>
 <%= I18n.t(:parameter, scope: :rspec_api_docs) %> | <%= I18n.t(:required, scope: :rspec_api_docs) %> | <%= I18n.t(:description, scope: :rspec_api_docs) %>
 -------- | ------- | -------
 <% end -%>
-<% action.params.each do |parametr| -%>
-<%= parametr.name %> | <%= parametr.required_human %> | <%= parametr.description %>
+<% action.params.each do |parameter| -%>
+<%= parameter.name %> | <%= parameter.required_human %> | <%= parameter.description %>
 <% end -%>
 
 <% end -%>
