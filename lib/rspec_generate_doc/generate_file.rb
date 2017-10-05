@@ -2,7 +2,7 @@ require 'erb'
 require 'fileutils'
 
 module RspecGenerateDoc
-  class GenarateFIle
+  class GenerateFIle
     TEMPLATE_EXTNAME = 'erb'.freeze
 
     attr_reader :actions, :parent
