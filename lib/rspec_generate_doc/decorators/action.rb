@@ -3,40 +3,23 @@ require 'ostruct'
 module RspecGenerateDoc
   module Decorators
     class Action
-      attr_reader :name, :response, :params, :options
+      attr_reader :name, :response, :content_type, :status, :status_message,
+                  :host, :request_method, :request_fullpath, :params, :options
       def initialize(data = {})
         @name = (data[:name] || '').split('#').join(' ')
         @response = data[:response]
+        @content_type = data[:content_type] || response.content_type
+        @status = data[:status] || response.status
+        @status_message = data[:status_message] || response.status_message
+        @host = data[:host] || request.host
+        @request_method = data[:request_method] || request.request_method
+        @request_fullpath = data[:request_fullpath] || request.original_fullpath.split('?').first
         @params = to_params(data[:api_params])
         @options = OpenStruct.new(data[:options] || {})
       end
 
-      def request_method
-        @request_method ||= request.request_method
-      end
-
-      def request_fullpath
-        @request_fullpath ||= request.original_fullpath.split('?').first
-      end
-
-      def host
-        @host ||= request.host
-      end
-
-      def status
-        @status ||= response.status
-      end
-
-      def status_message
-        @status_message ||= response.status_message
-      end
-
       def status_with_message
-        @status_with_message ||= "#{status} #{status_message}"
-      end
-
-      def content_type
-        @content_type ||= response.content_type
+        "#{status} #{status_message}"
       end
 
       def content_type?
